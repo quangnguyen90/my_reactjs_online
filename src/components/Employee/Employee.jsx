@@ -161,29 +161,24 @@ class Employee extends React.Component {
 
     // DETAIL
     handleClickUpdate = (employee) => () => {
-        this.setState({
-            employeeForUpdate: employee,
-            isOpenUpdate: true,
-        });
-
-        // const employeeId = employee.id;
-        // const apiUrl = `http://dummy.restapiexample.com/api/v1/employee/${employeeId}`;
-        // const options = {
-        //     method: 'GET',
-        // }
-        // fetch(apiUrl, options)
-        //     .then(res => res.json())
-        //     .then(
-        //         (result) => {
-        //             this.setState({
-        //                 employeeForUpdate: result.data,
-        //                 isOpenUpdate: true,
-        //             });
-        //         },
-        //         (error) => {
-        //             this.setState({ error });
-        //         }
-        //     )
+        const employeeId = employee.id;
+        const apiUrl = `http://dummy.restapiexample.com/api/v1/employee/${employeeId}`;
+        const options = {
+            method: 'GET',
+        }
+        fetch(apiUrl, options)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        employeeForUpdate: employee, //result.data,
+                        isOpenUpdate: true,
+                    });
+                },
+                (error) => {
+                    this.setState({ error });
+                }
+            )
     };
 
     render() {
