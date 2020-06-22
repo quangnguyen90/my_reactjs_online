@@ -77,11 +77,9 @@ class Employee extends React.Component {
                     employee_salary: result.data.salary,
                     employee_age: result.data.age,
                 };
-                {
-                    this.setState({
-                        listEmployee: [...this.state.listEmployee, responseData],
-                    });
-                }
+                this.setState({
+                    listEmployee: [...this.state.listEmployee, responseData],
+                });
             },
                 (error) => {
                     this.setState({ error });
@@ -142,16 +140,14 @@ class Employee extends React.Component {
                 //     employee_salary: result.data.salary,
                 //     employee_age: result.data.age,
                 // };
-                {
-                    this.setState({
-                        listEmployee: this.state.listEmployee.map((employee) =>
-                            employee.id === this.state.employeeForUpdate.id
-                                ? this.state.employeeForUpdate //responseData
-                                : employee
-                        ),
-                        isOpenUpdate: false,
-                    });
-                }
+                this.setState({
+                    listEmployee: this.state.listEmployee.map((employee) =>
+                        employee.id === this.state.employeeForUpdate.id
+                            ? this.state.employeeForUpdate // Cach 2: responseData
+                            : employee
+                    ),
+                    isOpenUpdate: false,
+                });
             },
                 (error) => {
                     this.setState({ error });
@@ -171,7 +167,7 @@ class Employee extends React.Component {
             .then(
                 (result) => {
                     this.setState({
-                        employeeForUpdate: employee, //result.data,
+                        employeeForUpdate: employee, //Cach 2: result.data,
                         isOpenUpdate: true,
                     });
                 },
