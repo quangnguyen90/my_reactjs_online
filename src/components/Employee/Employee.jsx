@@ -161,6 +161,13 @@ class Employee extends React.Component {
 
     // DETAIL
     handleClickUpdate = (employee) => () => {
+        // Cach 1:
+        // this.setState({
+        //     employeeForUpdate: employee,
+        //     isOpenUpdate: true,
+        // });
+
+        // Cach 2
         const employeeId = employee.id;
         const apiUrl = `http://dummy.restapiexample.com/api/v1/employee/${employeeId}`;
         const options = {
