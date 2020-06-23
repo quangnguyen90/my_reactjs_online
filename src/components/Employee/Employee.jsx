@@ -9,6 +9,7 @@ class Employee extends React.Component {
             employeeForUpdate: {},
             isOpenUpdate: false,
             error: {},
+            isLoaded: false,
         };
     }
 
@@ -28,6 +29,9 @@ class Employee extends React.Component {
 
     // GET EMPLOYEE LIST
     componentDidMount() {
+        this.setState({
+            isLoaded: true
+        });
         const apiUrl = 'http://dummy.restapiexample.com/api/v1/employees';
         const options = {
             method: 'GET',
@@ -236,22 +240,30 @@ class Employee extends React.Component {
                             <th>Age</th>
                             <th>Actions</th>
                         </tr>
-                        {this.state.listEmployee.map((employee, idx) => (
-                            <tr key={idx}>
-                                <td>{employee.id}</td>
-                                <td>{employee.employee_name}</td>
-                                <td>{employee.employee_salary}</td>
-                                <td>{employee.employee_age}</td>
-                                <td>
-                                    <button onClick={this.handleClickUpdate(employee)}>
-                                        Update
-                                    </button>
-                                    <button onClick={this.handleDeleteItem(employee.id)}>
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
+                        {
+                            this.state.isLoaded == true
+                            ?   (
+                                    this.state.listEmployee.map((employee, idx) => (
+                                        <tr key={idx}>
+                                            <td>{employee.id}</td>
+                                            <td>{employee.employee_name}</td>
+                                            <td>{employee.employee_salary}</td>
+                                            <td>{employee.employee_age}</td>
+                                            <td>
+                                                <button onClick={this.handleClickUpdate(employee)}>
+                                                    Update
+                                                </button>
+                                                <button onClick={this.handleDeleteItem(employee.id)}>
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                )
+                            :   (
+                                    <tr> Loading.... </tr>
+                            )
+                        }
                     </tbody>
                 </table>
             </div>
