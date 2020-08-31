@@ -248,7 +248,7 @@ class Employee extends React.Component {
                             <th>Actions</th>
                         </tr>
                         {
-                            this.state.isLoaded == true
+                            this.state.isLoaded === true
                             ?   (
                                     this.state.listEmployee.map((employee, idx) => (
                                         <tr key={idx}>
@@ -268,7 +268,9 @@ class Employee extends React.Component {
                                     ))
                                 )
                             :   (
-                                    <tr> Loading.... </tr>
+                                    <tr>
+                                        <td>Loading....</td>
+                                    </tr>
                             )
                         }
                     </tbody>
